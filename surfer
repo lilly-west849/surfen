@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="googlebot" content="noindex,nofollow">
+<meta name="description" content="Wavewatch – finde deinen nächsten Surf-Moment.">
+<title>WAVEWATCH — Find your flow</title>
+<style>
+:root{--bg:#f2e8d8;--paper:#fffaf2;--ink:#282326;--muted:#786c70;--pink:#e9a0b6;--red:#d94d48;--line:#e4d4c7}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+a{color:inherit}.wrap{max-width:1200px;margin:auto;padding:0 5vw}
+header{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-size:1.25rem;font-weight:950;letter-spacing:-.07em}.logo span{color:var(--red)}
+.nav{display:flex;gap:24px;font-size:.82rem}.nav a{text-decoration:none}
+.pill{background:var(--paper);border:1px solid var(--line);padding:10px 15px;border-radius:99px;font-size:.8rem}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;padding:76px 0 66px}
+.kicker{text-transform:uppercase;letter-spacing:.18em;font-size:.7rem;font-weight:800;color:var(--red)}
+h1{font-size:clamp(3.5rem,8vw,7.7rem);line-height:.83;letter-spacing:-.09em;margin:20px 0}
+h1 em{font-family:Georgia,serif;font-weight:400;color:var(--red)}
+.lead{font-size:1.1rem;line-height:1.65;color:var(--muted);max-width:490px}
+.cta{display:inline-flex;margin-top:18px;padding:15px 22px;background:var(--red);color:white;text-decoration:none;border-radius:4px;font-weight:800;transition:transform .2s,box-shadow .2s}
+.cta:hover{transform:translateY(-4px);box-shadow:0 8px 0 #28232622}
+
+.art{height:410px;position:relative;overflow:hidden;background:#f4b9c5;border-radius:48% 48% 7px 7px;display:grid;place-items:center}
+.sun{position:absolute;width:145px;height:145px;border-radius:50%;background:#f9e7ac;top:52px;right:70px;box-shadow:0 0 0 20px #f9e7ac55;animation:pulseSun 6s ease-in-out infinite}
+.wave{position:absolute;width:130%;height:190px;bottom:-45px;left:-10%;background:#d94d48;border-radius:48% 52% 0 0;transform:rotate(-8deg);animation:waveMove1 5s ease-in-out infinite alternate}
+.wave:before{content:"";position:absolute;top:-44px;left:8%;width:100%;height:120px;border-top:12px solid #fff0dc;border-radius:50%;transform:rotate(3deg)}
+.wave2{position:absolute;width:130%;height:145px;bottom:-80px;left:-15%;background:#a94350;border-radius:50% 50% 0 0;transform:rotate(8deg);animation:waveMove2 4s ease-in-out infinite alternate}
+.board{position:absolute;width:165px;height:24px;background:#fff5df;border-radius:50%;top:205px;left:38%;transform:rotate(-27deg);box-shadow:inset 0 -4px #d94d48;animation:boardFloat 4.5s ease-in-out infinite}
+.spark{position:absolute;color:#fff7e9;font-size:2.5rem;animation:float 4s ease-in-out infinite}.spark.s1{top:65px;left:48px}.spark.s2{right:42px;bottom:105px;animation-delay:1s}
+
+@keyframes float{50%{transform:translateY(-12px) rotate(12deg)}}
+@keyframes pulseSun{0%,100%{transform:scale(1);box-shadow:0 0 0 20px #f9e7ac55}50%{transform:scale(1.05);box-shadow:0 0 0 30px #f9e7ac33}}
+@keyframes waveMove1{0%{transform:rotate(-8deg) translateY(0)}100%{transform:rotate(-6deg) translateY(-8px)}}
+@keyframes waveMove2{0%{transform:rotate(8deg) translateY(0)}100%{transform:rotate(10deg) translateY(-6px)}}
+@keyframes boardFloat{0%,100%{transform:rotate(-27deg) translateY(0) translateX(0)}50%{transform:rotate(-24deg) translateY(-10px) translateX(4px)}}
+
+.section-title{display:flex;justify-content:space-between;gap:20px;align-items:end;margin:0 0 18px}
+h2{font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-.06em;margin:8px 0}
+.livebox{background:var(--paper);border:1px solid var(--line);padding:26px;border-radius:7px;box-shadow:9px 9px 0 #d94d481c}
+.livehead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+.live-label{font-size:.72rem;letter-spacing:.15em;font-weight:900;color:var(--red)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#299b68;margin-right:7px;box-shadow:0 0 0 4px #299b6822}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.metric{padding:19px;background:#f6eee4;border-radius:5px}.metric small{color:var(--muted);font-size:.7rem;letter-spacing:.08em}.metric strong{display:block;font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-.07em;margin:10px 0 3px}
+.forecast{display:flex;gap:10px;overflow-x:auto;margin-top:18px;padding-bottom:5px}
+.forecast-item{min-width:100px;padding:14px;background:#f6eee4;border-radius:5px;display:grid;gap:7px;font-size:.8rem}.forecast-item b{font-size:1.25rem}.forecast-item small{color:var(--muted)}
+#message{min-height:22px;color:var(--muted);font-size:.82rem;line-height:1.5;margin:14px 0 0}#message.error{color:#b52e2e}
+button{font:inherit;cursor:pointer}.reload{border:0;background:var(--ink);color:white;padding:11px 15px;border-radius:4px;font-size:.78rem;font-weight:bold}.reload:hover{background:var(--red)}
+footer{border-top:1px solid var(--line);margin-top:55px;padding:22px 0 30px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:.76rem;line-height:1.6}
+@media(max-width:700px){.nav{display:none}.hero{grid-template-columns:1fr;padding:50px 0}.art{height:290px}.metrics{gap:7px}.metric{padding:12px 9px}.metric strong{font-size:1.6rem}.livebox{padding:17px}.section-title{align-items:start;flex-direction:column}footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+</style></head>
+<body><div class="wrap">
+<header><div class="logo">WAVE<span>WATCH</span> ✳</div><nav class="nav"><a href="#forecast">Live forecast</a><a href="#about">About</a></nav><div class="pill">NORDSEE · SURF CLUB</div></header>
+<main>
+<section class="hero"><div><div class="kicker">Ride the right moment</div><h1>Find your<br><em>flow.</em></h1><p class="lead">Der Ozean gibt den Takt vor. Wir helfen dir, ihn zu lesen. Entdecke die aktuellen Wellenbedingungen und finde dein nächstes Fenster auf dem Wasser.</p><a class="cta" href="#forecast">Wellen checken&nbsp; ↘</a></div>
+<div class="art" aria-label="Abstrakte Illustration von Sonne, Surfbrett und Wellen"><div class="sun"></div><span class="spark s1">✳</span><span class="spark s2">✦</span><div class="board"></div><div class="wave"></div><div class="wave2"></div></div></section>
+<section id="forecast"><div class="section-title"><div><div class="kicker">Live conditions / spot 01</div><h2>Dein Surf-Fenster.</h2><div style="color:var(--muted);font-size:.9rem">Beispiel-Spot: Helgoland, Nordsee</div></div><button class="reload" id="reload" type="button" aria-label="Wellendaten jetzt neu laden">↻ Daten aktualisieren</button></div>
+<div class="livebox"><div class="livehead"><div><div class="live-label"><span class="dot"></span>LIVE VON OPEN-METEO</div><div style="font-size:.82rem;color:var(--muted);margin-top:7px" id="spot">Helgoland · Nordsee</div></div><div style="font-size:.75rem;color:var(--muted)">Stündliche Vorhersage</div></div>
+<div class="metrics"><div class="metric"><small>WELLENHÖHE</small><strong id="height">—</strong><small>Signifikante Wellenhöhe</small></div><div class="metric"><small>PERIODE</small><strong id="period">—</strong><small>Sekunden zwischen Wellen</small></div><div class="metric"><small>RICHTUNG</small><strong id="direction">—</strong><small>Grad</small></div></div>
+<div class="kicker" style="margin-top:25px">Die nächsten Stunden</div><div class="forecast" id="forecast"><div class="forecast-item">Wellen werden geladen …</div></div><p id="message" role="status">Wetterdaten werden geladen …</p></div></section>
+<section id="about" style="padding-top:50px;max-width:650px"><div class="kicker">Less scrolling. More surfing.</div><h2>Der beste Forecast ist der, den du verstehst.</h2><p class="lead">Wavewatch bündelt die wichtigsten Wellendaten an einem Ort. Check die Bedingungen, pack dein Board und geh raus – wenn es passt.</p></section>
+</main>
+<footer><div>© WAVEWATCH · Find your flow.</div><div>Wellen-Daten: <a href="https://open-meteo.com/en/docs/marine-weather-api" target="_blank" rel="noopener">Open-Meteo Marine API</a> (CC BY 4.0).<br>Studienprojekt der Kunstschule Wandsbek, keine offizielle Seite.</div></footer>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const coords = { latitude: 54.181, longitude: 7.886, name: "Helgoland" };
+const fmt = (n, digits=1) => Number.isFinite(Number(n)) ? Number(n).toFixed(digits) : "–";
+function setMessage(text, error=false) {
+  const el=$("message"); el.textContent=text; el.classList.toggle("error",error);
+}
+async function loadSurf() {
+  $("reload").disabled=true; $("reload").textContent="Lädt …";
+  setMessage("Frische Wellendaten werden direkt von Open-Meteo geladen …");
+  try {
+    const u=new URL("https://marine-api.open-meteo.com/v1/marine");
+    u.search=new URLSearchParams({
+      latitude:coords.latitude, longitude:coords.longitude,
+      hourly:"wave_height,wave_period,wave_direction",
+      daily:"wave_height_max,wave_period_max",
+      forecast_days:"2", timezone:"auto"
+    });
+    const r=await fetch(u, { cache: "no-store" });
+    if(!r.ok) throw new Error("API antwortet mit HTTP "+r.status);
+    const d=await r.json();
+    if(!d.hourly?.time?.length) throw new Error("Die API hat keine Wellendaten geliefert.");
+    const now=Date.now();
+    let start=d.hourly.time.findIndex(t=>new Date(t).getTime()>=now);
+    if(start<0) start=0;
+    const currentIndex=start;
+    $("height").textContent=fmt(d.hourly.wave_height[currentIndex])+" m";
+    $("period").textContent=fmt(d.hourly.wave_period[currentIndex],0)+" s";
+    $("direction").textContent=fmt(d.hourly.wave_direction[currentIndex],0)+"°";
+    $("spot").textContent=coords.name+" · Nordsee";
+    $("forecast").innerHTML="";
+    for(let i=start;i<Math.min(start+8,d.hourly.time.length);i++){
+      const date=new Date(d.hourly.time[i]);
+      const item=document.createElement("div"); item.className="forecast-item";
+      const time=document.createElement("span"); time.textContent=date.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});
+      const wave=document.createElement("b"); wave.textContent=fmt(d.hourly.wave_height[i])+" m";
+      const period=document.createElement("small"); period.textContent=fmt(d.hourly.wave_period[i],0)+" s Periode";
+      item.append(time,wave,period); $("forecast").append(item);
+    }
+    const loaded=new Date().toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit"});
+    setMessage("Zuletzt erfolgreich aktualisiert: "+loaded+" Uhr · Neue Daten direkt von Open-Meteo geladen.");
+  } catch(e) {
+    $("height").textContent="–"; $("period").textContent="–"; $("direction").textContent="–";
+    $("forecast").innerHTML='<div class="forecast-item">Vorhersage gerade nicht verfügbar.</div>';
+    setMessage("Wellendaten gerade nicht erreichbar. Bitte Internetverbindung prüfen und erneut versuchen. ("+e.message+")",true);
+  } finally { $("reload").disabled=false; $("reload").textContent="↻ Daten aktualisieren"; }
+}
+$("reload").addEventListener("click",loadSurf);
+loadSurf();
+setInterval(loadSurf,30*60*1000);
+</script></body></html>
